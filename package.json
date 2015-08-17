@@ -1,0 +1,50 @@
+{
+  "name": "react-select2-wrapper",
+  "version": "0.0.1",
+  "description": "React component for Select2",
+  "main": "src/components/Select2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rkit/react-select2-wrapper"
+  },
+  "keywords": [
+    "react-component",
+    "select2",
+    "tags",
+    "multiselect",
+    "select",
+    "input"
+  ],
+  "dependencies": {
+    "react": "^0.13.3",
+    "select2": "^4.0.0",
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+    "babel": "^5.8.9",
+    "babel-loader": "^5.3.2",
+    "babel-eslint": "^4.0.5",
+    "eslint": "^1.0.0",
+    "eslint-config-airbnb": "^0.0.7",
+    "eslint-plugin-react": "^3.2.0",
+    "react-hot-loader": "^1.2.8",
+    "webpack": "^1.10.5",
+    "webpack-dev-server": "^1.10.1",
+    "extract-text-webpack-plugin": "^0.7.1",
+    "css-loader": "^0.15.4",
+    "style-loader": "^0.12.3"
+  },
+  "scripts": {
+    "watch": "webpack --watch",
+    "build": "NODE_ENV=production webpack -p"
+  },
+  "author": "Igor Romanov <rkit.ru@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rkit/react-select2-wrapper/issues"
+  },
+  "homepage": "https://github.com/rkit/react-select2-wrapper"
+}
