@@ -10,7 +10,7 @@ npm install react-select2-wrapper --save
 ## Usage
 
 ```js
-import Select2 from './Select2';
+import Select2 from 'react-select2-wrapper';
 
 <Select2
  multiple={true}
