@@ -2,7 +2,7 @@
   "name": "react-select2-wrapper",
   "version": "0.0.1",
   "description": "React component for Select2",
-  "main": "src/components/Select2.js",
+  "main": "src/components/Select2.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
