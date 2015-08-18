@@ -9,7 +9,7 @@ npm install react-select2-wrapper --save
 
 ## Usage
 
-```
+```js
 import Select2 from './Select2';
 
 <Select2
@@ -22,7 +22,7 @@ import Select2 from './Select2';
 
 With callbacks
 
-```
+```js
 <Select2
  multiple={true}
  data={['bug', 'feature', 'documents', 'discussion']}
