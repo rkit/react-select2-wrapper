@@ -11,6 +11,7 @@ Thumbs.db
 .DS_Store
 
 # folders
+/examples
 /src
 
 # files
