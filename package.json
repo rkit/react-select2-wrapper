@@ -38,8 +38,9 @@
     "style-loader": "^0.12.3"
   },
   "scripts": {
-    "watch": "webpack --watch",
-    "build": "NODE_ENV=production webpack -p",
+    "server": "cd examples && node webpack.server.js",
+    "watch": "cd examples && webpack --watch",
+    "build": "cd examples && NODE_ENV=production webpack -p",
     "compile": "babel --stage 0 -d lib/ src/",
     "prepublish": "npm run compile"
   },

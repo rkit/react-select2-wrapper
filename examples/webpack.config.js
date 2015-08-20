@@ -7,7 +7,7 @@ module.exports = {
   context: path.join(__dirname, '.'),
 
   entry: [
-    './examples/index.js',
+    './js/index.js',
   ],
 
   output: {
@@ -19,6 +19,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/, exclude: [/node_modules/, /bower_components/], loaders: ['react-hot', 'babel?stage=0'] },
+      { test: /\.jsx$/, loaders: ['babel?stage=0'] },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
       { test: /\.(woff2|woff|svg|ttf|eot)([\?]?.*)$/, loader: 'file-loader?name=[name].[ext]' },
     ],
