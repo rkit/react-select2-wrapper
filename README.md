@@ -42,17 +42,17 @@ Default theme in [src/css/select2.css](src/css/select2.css)
 
 ## Development
 
-* Server
+- Run webpack-dev-server
   ```
   npm run server
   ```
 
-* Watch mode
+- Run webpack in watch mode
   ```
   npm run watch
   ```
 
-* Build for production
+- Run webpack for build
   ```
   npm run build
   ```
