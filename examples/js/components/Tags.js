@@ -1,5 +1,5 @@
 import React from 'react';
-import Select2 from '../../../src/components/Select2.jsx';
+import Select2 from '../../../src/components/Select2';
 import '../../../src/css/select2.css';
 
 export default class Tags extends React.Component {
