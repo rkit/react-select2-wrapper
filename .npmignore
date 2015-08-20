@@ -10,8 +10,10 @@ nbproject
 Thumbs.db
 .DS_Store
 
-# other
+# folders
 /src
+
+# files
 .gitignore
 .eslintrc
 webpack.config.js
