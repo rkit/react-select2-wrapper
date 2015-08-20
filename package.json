@@ -1,8 +1,8 @@
 {
   "name": "react-select2-wrapper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React component for Select2",
-  "main": "src/components/Select2.jsx",
+  "main": "lib/components/Select2.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -39,7 +39,9 @@
   },
   "scripts": {
     "watch": "webpack --watch",
-    "build": "NODE_ENV=production webpack -p"
+    "build": "NODE_ENV=production webpack -p",
+    "compile": "babel --stage 0 -d lib/ src/",
+    "prepublish": "npm run compile"
   },
   "author": "Igor Romanov <rkit.ru@gmail.com>",
   "license": "MIT",

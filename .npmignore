@@ -1,0 +1,17 @@
+# project files
+.idea
+nbproject
+.buildpath
+.project
+.settings
+*.esproj
+
+# system files
+Thumbs.db
+.DS_Store
+
+# other
+/src
+.gitignore
+.eslintrc
+webpack.config.js
