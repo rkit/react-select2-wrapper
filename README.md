@@ -36,6 +36,10 @@ With callbacks
  }} />
 ```
 
+## Themes
+
+Default theme in [src/css/select2.css](src/css/select2.css)
+
 ## Development
 
 * Watch mode
