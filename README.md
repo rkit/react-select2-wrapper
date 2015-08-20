@@ -42,6 +42,11 @@ Default theme in [src/css/select2.css](src/css/select2.css)
 
 ## Development
 
+* Server
+  ```
+  npm run server
+  ```
+
 * Watch mode
   ```
   npm run watch
