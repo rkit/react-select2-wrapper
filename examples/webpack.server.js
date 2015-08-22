@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const port = process.env.PORT || 3000;
 
-config.entry.push(
+config.entry.app.push(
   'webpack-dev-server/client?http://0.0.0.0:' + port,
   'webpack/hot/only-dev-server'
 );

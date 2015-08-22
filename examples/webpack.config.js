@@ -6,14 +6,16 @@ const assetsDir = path.join(__dirname, './assets');
 module.exports = {
   context: path.join(__dirname, '.'),
 
-  entry: [
-    './js/index.js',
-  ],
+  entry: {
+    app: [
+      './js/index.js',
+    ],
+  },
 
   output: {
     path: assetsDir + '/',
     publicPath: '/assets',
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
 
   module: {
