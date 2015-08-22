@@ -1,20 +1,10 @@
-# project files
-.idea
-nbproject
-.buildpath
-.project
-.settings
-*.esproj
-
-# system files
-Thumbs.db
+# hidden system files
 .DS_Store
+Thumbs.db
 
-# folders
+# jetbrains
+.idea
+
+# examples and source
 /examples
 /src
-
-# files
-.gitignore
-.eslintrc
-webpack.config.js

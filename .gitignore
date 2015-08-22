@@ -1,23 +1,19 @@
-# project files
-.idea
-nbproject
-.buildpath
-.project
-.settings
-*.esproj
-
-# system files
-Thumbs.db
+# hidden system files
 .DS_Store
+Thumbs.db
 
-# folders
+# jetbrains
+.idea
+
+# composer
 /vendor
-/node_modules
-/bower_components
-/lib
 
-# files
+# npm
+node_modules
 npm-debug.log
-composer.phar
-phpunit.phar
-/phpunit.xml
+
+# bower
+bower_components
+
+# build
+/lib
