@@ -1,6 +1,6 @@
-const config = require('./webpack.config');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const config = require('./webpack.config');
 const port = process.env.PORT || 3000;
 
 config.entry.app.push(
@@ -10,9 +10,8 @@ config.entry.app.push(
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
-  contentBase: './',
+  historyApiFallback: true,
   hot: true,
-  quiet: false,
   stats: {
     colors: true,
   },

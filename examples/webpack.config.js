@@ -1,47 +1,48 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const assetsDir = path.join(__dirname, './assets');
 
 module.exports = {
-  context: path.join(__dirname, '.'),
-
   entry: {
     app: [
-      './js/index.js',
+      './src/index.js',
     ],
   },
 
   output: {
-    path: assetsDir + '/',
-    publicPath: '/assets',
+    path: path.join(__dirname, 'assets'),
+    publicPath: '/assets/',
     filename: '[name].js',
   },
 
   module: {
     loaders: [
-      { test: /\.js$/, exclude: [/node_modules/, /bower_components/], loaders: ['react-hot', 'babel?stage=0'] },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
-      { test: /\.(woff2|woff|svg|ttf|eot)([\?]?.*)$/, loader: 'file-loader?name=[name].[ext]' },
+      {
+        test: /\.js$/,
+        loaders: ['react-hot', 'babel'],
+        include: [path.join(__dirname, 'src'), path.join(__dirname, '../src')],
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      },
+      {
+        test: /\.(woff2|woff|svg|ttf|eot)([\?]?.*)$/,
+        loader: 'file-loader?name=[name].[ext]',
+      },
     ],
 
-    noParse: [
-      /\.min\.js/,
-    ],
+    noParse: [],
   },
 
   plugins: [
     new ExtractTextPlugin('[name].css'),
-
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
     }),
-
-    new webpack.optimize.DedupePlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-
-    //new webpack.optimize.CommonsChunkPlugin("commons.js")
   ],
 };
