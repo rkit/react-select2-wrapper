@@ -39,7 +39,7 @@
     "react-hot-loader": "^1.3.0"
   },
   "scripts": {
-    "server": "cd examples && node webpack.server.js",
+    "start": "cd examples && node webpack.server.js",
     "watch": "cd examples && webpack --watch",
     "build": "cd examples && webpack -p",
     "compile": "babel --stage 0 -d lib/ src/",

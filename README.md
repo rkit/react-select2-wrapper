@@ -44,7 +44,7 @@ Default theme in [src/css/select2.css](src/css/select2.css)
 
 - Run webpack-dev-server
   ```
-  npm run server
+  npm run start
   ```
 
 - Run webpack in watch mode
