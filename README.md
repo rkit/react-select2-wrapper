@@ -1,4 +1,6 @@
-# React wrapper for [Select2](https://select2.github.io/)
+# React Select2
+
+Wrapper for [Select2](https://select2.github.io/)
 
 ## Installation
 
