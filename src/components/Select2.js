@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import 'select2';
 
-export default class Select2 extends React.Component {
+export default class Select2 extends Component {
   static propTypes = {
-    data: React.PropTypes.array,
-    events: React.PropTypes.array,
-    options: React.PropTypes.object,
-    multiple: React.PropTypes.bool,
-    onOpen: React.PropTypes.func,
-    onClose: React.PropTypes.func,
-    onSelect: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onUnselect: React.PropTypes.func,
+    data: PropTypes.array,
+    events: PropTypes.array,
+    options: PropTypes.object,
+    multiple: PropTypes.bool,
+    onOpen: PropTypes.func,
+    onClose: PropTypes.func,
+    onSelect: PropTypes.func,
+    onChange: PropTypes.func,
+    onUnselect: PropTypes.func,
   }
 
   static defaultProps = {
@@ -33,7 +34,7 @@ export default class Select2 extends React.Component {
   }
 
   componentDidMount() {
-    this.el = $(React.findDOMNode(this));
+    this.el = $(ReactDOM.findDOMNode(this));
     this.el.select2(this.props.options);
 
     this.props.events.forEach(event => {
