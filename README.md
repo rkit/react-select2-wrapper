@@ -1,4 +1,4 @@
-# React Select2
+# react-select2-wrapper
 
 Wrapper for [Select2](https://select2.github.io/)
 
