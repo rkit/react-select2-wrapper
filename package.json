@@ -4,7 +4,7 @@
   "description": "React component for Select2",
   "main": "lib/components/Select2.js",
   "scripts": {
-    "start": "cd examples && node webpack.server.js",
+    "start": "cd examples && node server.js",
     "watch": "cd examples && webpack --watch",
     "build": "cd examples && webpack -p",
     "compile": "babel --stage 0 -d lib/ src/",
