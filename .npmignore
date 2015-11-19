@@ -1,10 +1,5 @@
-# hidden system files
 .DS_Store
 Thumbs.db
 
-# jetbrains
-.idea
-
-# examples and source
 /examples
 /src
