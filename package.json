@@ -1,6 +1,6 @@
 {
-  "name": "react-select2-wrapper",
-  "version": "0.0.6",
+  "name": "react-select2-data-wrapper",
+  "version": "0.0.7",
   "description": "React component for Select2",
   "main": "lib/components/Select2.js",
   "scripts": {
@@ -46,7 +46,7 @@
   "author": "Igor Romanov <rkit.ru@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rkit/react-select2-wrapper/issues"
+    "url": "https://github.com/brookslyrette/react-select2-wrapper/issues"
   },
-  "homepage": "https://github.com/rkit/react-select2-wrapper"
+  "homepage": "https://github.com/brookslyrette/react-select2-wrapper"
 }

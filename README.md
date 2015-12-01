@@ -1,17 +1,17 @@
-# react-select2-wrapper
+# react-select2-data-wrapper
 
 Wrapper for [Select2](https://select2.github.io/)
 
 ## Installation
 
 ```
-npm install react-select2-wrapper --save
+npm install react-select2-data-wrapper --save
 ```
 
 ## Usage
 
 ```js
-import Select2 from 'react-select2-wrapper';
+import Select2 from 'react-select2-data-wrapper';
 
 <Select2
  multiple={true}
@@ -23,7 +23,7 @@ import Select2 from 'react-select2-wrapper';
 
 With Object Data
 ```js
-import Select2 from 'react-select2-wrapper';
+import Select2 from 'react-select2-data-wrapper';
 
 <Select2
   multiple={false}
