@@ -50,7 +50,12 @@ export default class Select2 extends Component {
     return (
       <select multiple={this.props.multiple}>
         {this.props.data.map((item, k) => {
-          return (<option key={'option-' + k}>{item}</option>);
+          if(typeof item === 'string' || ((!!item && typeof item === 'object') && Object.prototype.toString.call(item) === '[object String]')) {
+            return (<option key={'option-' + k}>{item}</option>);
+          }
+          else {
+            return (<option key={'option-' + k} value={item.id}>{item.text}</option>);
+          }
         })}
       </select>
     );

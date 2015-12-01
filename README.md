@@ -21,6 +21,18 @@ import Select2 from 'react-select2-wrapper';
  }} />
 ```
 
+With Object Data
+```js
+import Select2 from 'react-select2-wrapper';
+
+<Select2
+  multiple={false}
+  data={[{text: 'Bug', id: 0}, {text: 'Feature', id: 1}, {text: 'Documents', id: 2}, {text: 'Discussion', id: 'UUID'}]}
+  options={{
+    placeholder: 'search by tags',
+  }} />
+```
+
 With callbacks
 
 ```js
