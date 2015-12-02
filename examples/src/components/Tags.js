@@ -24,11 +24,11 @@ export default class Tags extends Component {
           <Select2
             multiple={false}
             data={[
-                {text: 'Bug', id: 0},
-                {text: 'Feature', id: 1},
-                {text: 'Documents', id: 2},
-                {text: 'Discussion', id: 'UUID'}
-              ]}
+              {text: 'Bug', id: 0},
+              {text: 'Feature', id: 1},
+              {text: 'Documents', id: 2},
+              {text: 'Discussion', id: 'UUID'},
+            ]}
             onOpen={() => { console.log('onOpen'); } }
             onClose={() => { console.log('onClose'); } }
             onSelect={() => { console.log('onSelect'); } }
