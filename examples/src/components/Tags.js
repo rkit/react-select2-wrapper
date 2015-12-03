@@ -37,6 +37,26 @@ export default class Tags extends Component {
             options={{
               placeholder: 'search by tags',
             }} />
+            <br/>
+            <br/>
+            With 'tags' option enabled
+            <Select2
+              multiple={true}
+              tags={true}
+              data={[
+                  {text: 'Bug', id: 0},
+                  {text: 'Feature', id: 1},
+                  {text: 'Documents', id: 2},
+                  {text: 'Discussion', id: 'UUID'}
+                ]}
+              onOpen={() => { console.log('onOpen'); } }
+              onClose={() => { console.log('onClose'); } }
+              onSelect={() => { console.log('onSelect'); } }
+              onChange={() => { console.log('onChange'); } }
+              onUnselect={() => { console.log('onUnselect'); } }
+              options={{
+                placeholder: 'search by tags',
+              }} />
       </div>
     );
   }
