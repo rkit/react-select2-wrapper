@@ -8,6 +8,7 @@ export default class Select2 extends Component {
     events: PropTypes.array,
     options: PropTypes.object,
     multiple: PropTypes.bool,
+    tags: PropTypes.bool,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     onSelect: PropTypes.func,
@@ -26,6 +27,7 @@ export default class Select2 extends Component {
     ],
     options: {},
     multiple: false,
+    tags: false,
   }
 
   constructor(props) {
@@ -48,7 +50,7 @@ export default class Select2 extends Component {
 
   render() {
     return (
-      <select multiple={this.props.multiple}>
+      <select multiple={this.props.multiple} data-tags="{this.props.tags}">
         {this.props.data.map((item, k) => {
           if (typeof item === 'string' ||
             ((!!item && typeof item === 'object') && Object.prototype.toString.call(item) === '[object String]')) {
