@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 import 'select2';
 
 export default class Select2 extends Component {
