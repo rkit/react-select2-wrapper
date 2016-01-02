@@ -21,13 +21,13 @@ import Select2 from 'react-select2-wrapper';
  }} />
 ```
 
-With Object Data
+With data as an object
 ```js
 import Select2 from 'react-select2-wrapper';
 
 <Select2
   multiple={false}
-  data={[{text: 'Bug', id: 0}, {text: 'Feature', id: 1}, {text: 'Documents', id: 2}, {text: 'Discussion', id: 'UUID'}]}
+  data={[{text: 'bug', id: 1}, {text: 'feature', id: 2}, {text: 'documents', id: 3}, {text: 'discussion', id: 4}]}
   options={{
     placeholder: 'search by tags',
   }} />
