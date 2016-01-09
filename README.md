@@ -51,7 +51,11 @@ With callbacks
 
 ## Themes
 
-Default theme in [src/css/select2.css](src/css/select2.css)
+Default theme in [css/select2.css](css/select2.css)
+
+```js
+import 'react-select2-wrapper/css/select2.css';
+```
 
 ## Development
 
