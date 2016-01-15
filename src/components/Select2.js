@@ -59,7 +59,7 @@ export default class Select2 extends Component {
             ((!!item && typeof item === 'object') && Object.prototype.toString.call(item) === '[object String]')) {
             return (<option key={'option-' + k} value={item}>{item}</option>);
           }
-          return (<option key={'option-' + k} value={item.id}>{item.text}</option>);
+          return (<option key={'option-' + k} value={item.id} selected={item.selected}>{item.text}</option>);
         })}
       </select>
     );
