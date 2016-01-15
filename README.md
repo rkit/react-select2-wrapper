@@ -12,6 +12,7 @@ npm install react-select2-wrapper --save
 
 ```js
 import Select2 from 'react-select2-wrapper';
+…
 
 <Select2
  multiple={true}
@@ -23,18 +24,20 @@ import Select2 from 'react-select2-wrapper';
 
 With data as an object
 ```js
-import Select2 from 'react-select2-wrapper';
-
 <Select2
   multiple={false}
-  data={[{text: 'bug', id: 1}, {text: 'feature', id: 2}, {text: 'documents', id: 3}, {text: 'discussion', id: 4}]}
+  data={[
+    { text: 'bug', id: 1 },
+    { text: 'feature', id: 2 },
+    { text: 'documents', id: 3 },
+    { text: 'discussion', id: 4 },
+  ]}
   options={{
     placeholder: 'search by tags',
   }} />
 ```
 
 With callbacks
-
 ```js
 <Select2
  multiple={true}
@@ -47,6 +50,47 @@ With callbacks
  options={{
    placeholder: 'search by tags',
  }} />
+```
+
+With default value
+```js
+<Select2
+  multiple={false}
+  defaultValue={2}
+  data={[
+    { text: 'bug', id: 1 },
+    { text: 'feature', id: 2 },
+    { text: 'documents', id: 3 },
+    { text: 'discussion', id: 4 },
+  ]}
+  options={{
+    placeholder: 'search by tags',
+  }} />
+```
+
+With default multiple value
+
+```js
+<Select2
+  multiple={true}
+  defaultValue={[1, 4]}
+  data={[
+    { text: 'bug', id: 1 },
+    { text: 'feature', id: 2 },
+    { text: 'documents', id: 3 },
+    { text: 'discussion', id: 4 },
+  ]}
+  options={{
+    placeholder: 'search by tags',
+  }} />
+```
+
+You can access to select2 as follows
+```js
+// assign a ref attribute
+<Select2 ref="tags" />
+// somewhere in your code, access via `this.refs`
+this.refs.tags.el
 ```
 
 ## Themes
