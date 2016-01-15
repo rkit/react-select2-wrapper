@@ -10,6 +10,8 @@ npm install react-select2-wrapper --save
 
 ## Usage
 
+### Basic usage
+
 ```js
 import Select2 from 'react-select2-wrapper';
 …
@@ -22,7 +24,8 @@ import Select2 from 'react-select2-wrapper';
  }} />
 ```
 
-With data as an object
+### With data as an object
+
 ```js
 <Select2
   multiple={false}
@@ -37,7 +40,8 @@ With data as an object
   }} />
 ```
 
-With callbacks
+### With callbacks
+
 ```js
 <Select2
  multiple={true}
@@ -52,7 +56,8 @@ With callbacks
  }} />
 ```
 
-With default value
+### With default value
+
 ```js
 <Select2
   multiple={false}
@@ -68,7 +73,7 @@ With default value
   }} />
 ```
 
-With default multiple value
+### With default multiple value
 
 ```js
 <Select2
@@ -84,6 +89,8 @@ With default multiple value
     placeholder: 'search by tags',
   }} />
 ```
+
+### Access to select2
 
 You can access to select2 as follows
 ```js
