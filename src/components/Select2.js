@@ -52,8 +52,10 @@ export default class Select2 extends Component {
   }
 
   render() {
+    const { data, events, ...params } = this.props;
+
     return (
-      <select {...props}>
+      <select {...params}>
         {this.props.data.map((item, k) => {
           if (typeof item === 'string' ||
             ((!!item && typeof item === 'object') && Object.prototype.toString.call(item) === '[object String]')) {
