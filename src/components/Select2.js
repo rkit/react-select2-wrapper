@@ -53,7 +53,7 @@ export default class Select2 extends Component {
 
   render() {
     return (
-      <select className={this.props.className} multiple={this.props.multiple} defaultValue={this.props.defaultValue}>
+      <select {...props}>
         {this.props.data.map((item, k) => {
           if (typeof item === 'string' ||
             ((!!item && typeof item === 'object') && Object.prototype.toString.call(item) === '[object String]')) {
