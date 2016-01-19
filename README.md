@@ -90,6 +90,14 @@ import Select2 from 'react-select2-wrapper';
   }} />
 ```
 
+### Properties
+
+You can pass any properties such as `class`, `id`, `data-*` attributes
+
+```js
+<Select2 className="selector" … />
+```
+
 ### Access to select2
 
 You can access to select2 as follows
