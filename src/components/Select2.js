@@ -60,8 +60,10 @@ export default class Select2 extends Component {
           if (typeof item === 'string' ||
             ((!!item && typeof item === 'object') && Object.prototype.toString.call(item) === '[object String]')) {
             return (<option key={'option-' + k} value={item}>{item}</option>);
+          } else {
+            const { id, text, ...itemParams } = item;
+            return (<option key={'option-' + k} value={id} {...itemParams}>{text}</option>);
           }
-          return (<option key={'option-' + k} value={item.id}>{item.text}</option>);
         })}
       </select>
     );
