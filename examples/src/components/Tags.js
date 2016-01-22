@@ -47,7 +47,7 @@ export default class Tags extends Component {
           data={[
             { text: 'bug', id: 1 },
             { text: 'feature', id: 2 },
-            { text: 'documents', id: 3 },
+            { text: 'documents', id: 3, disabled: true },
             { text: 'discussion', id: 4 },
           ]}
           options={{

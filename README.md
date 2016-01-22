@@ -61,11 +61,11 @@ import Select2 from 'react-select2-wrapper';
 ```js
 <Select2
   multiple={false}
-  defaultValue={2}
+  defaultValue={2} // or as string
   data={[
     { text: 'bug', id: 1 },
     { text: 'feature', id: 2 },
-    { text: 'documents', id: 3 },
+    { text: 'documents', id: 3, disabled: true },
     { text: 'discussion', id: 4 },
   ]}
   options={{
