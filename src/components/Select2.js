@@ -8,6 +8,7 @@ export default class Select2 extends Component {
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.array,
+      PropTypes.string,
     ]),
     data: PropTypes.array,
     events: PropTypes.array,
