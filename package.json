@@ -22,6 +22,7 @@
     "select",
     "input"
   ],
+
   "dependencies": {
     "jquery": "^2.1.4",
     "react": "^0.14.0",

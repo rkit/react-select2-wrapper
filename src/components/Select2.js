@@ -46,15 +46,10 @@ export default class Select2 extends Component {
   }
 
   componentDidMount() {
-    this.el = $(ReactDOM.findDOMNode(this));
-    this.el.select2(this.props.options);
+    this.initSelect2();
     this.props.events.forEach(event => {
       this.el.on(event[0], this.props[event[1]]);
-    });
-    const { defaultValue, value } = this.props;
-    if (defaultValue === (void 0) && value !== (void 0)) {
-      this.setValue(value);
-    }
+    });    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,11 +58,18 @@ export default class Select2 extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (!shallowEqualFuzzy(prevProps.data, this.props.data)) {
+      this.destroySelect2();
+      this.initSelect2();
+    }
+  }
+
   componentWillUnmount() {
     this.props.events.forEach(event => {
       this.el.off(event[0], this.props[event[1]]);
     });
-    this.el.select2('destroy');
+    this.destroySelect2();
   }
 
   setValue(value) {
@@ -75,6 +77,22 @@ export default class Select2 extends Component {
     if (!shallowEqualFuzzy(elVal, value)) {
       this.el.val(value).trigger('change');
     }
+  }
+
+  initSelect2() {
+    if (this.el) { return; }
+    this.el = $(ReactDOM.findDOMNode(this));
+    this.el.select2(this.props.options);
+    const { defaultValue, value } = this.props;
+    if (defaultValue === (void 0) && value !== (void 0)) {
+      this.setValue(value);
+    }
+  }
+
+  destroySelect2() {
+    if(!this.el) { return; }
+    this.el.select2('destroy');
+    this.el = null;
   }
 
   render() {

@@ -9,10 +9,16 @@ export default class Tags extends Component {
     this.state = {
       value1: ['feature'],
       value2: null,
+      data6: [
+        { text: 'bug', id: 1 },
+        { text: 'feature', id: 2 },
+        { text: 'documents', id: 3 },
+        { text: 'discussion', id: 4 },
+      ]
     };
   }
   render() {
-    const { value1, value2 } = this.state;
+    const { value1, value2, data6 } = this.state;
     return (
       <div>
         Basic usage<br/>
@@ -101,6 +107,23 @@ export default class Tags extends Component {
             placeholder: 'search by tags',
           }}
         />
+
+        <br/><br/>
+        <Select2
+          defaultValue={1}
+          data={ data6 }
+          options={{
+            placeholder: 'search by tags',
+          }}
+        />
+        <button onClick={ ()=> this.setState({ data6: [
+          { text: 'BUG', id: 1 },
+          { text: 'FEATURE', id: 2 },
+          { text: 'DOCUMENTS', id: 3 },
+          { text: 'DISCUSSION', id: 4 },
+        ]}) }>Reload data value</button>
+
+
       </div>
     );
   }
