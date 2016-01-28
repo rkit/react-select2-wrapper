@@ -19,7 +19,7 @@ export default class Select2 extends Component {
     onSelect: PropTypes.func,
     onChange: PropTypes.func,
     onUnselect: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     data: [],
@@ -32,7 +32,7 @@ export default class Select2 extends Component {
     ],
     options: {},
     multiple: false,
-  }
+  };
 
   constructor(props) {
     super(props);
