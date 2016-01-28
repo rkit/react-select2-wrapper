@@ -23,6 +23,7 @@
     "input"
   ],
   "dependencies": {
+    "fbjs": "^0.7.0",
     "jquery": "^2.1.4",
     "react": "^0.14.0",
     "react-dom": "^0.14.1",

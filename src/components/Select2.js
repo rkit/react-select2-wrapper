@@ -2,10 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import 'select2';
+import shallowEqual from 'fbjs/lib/shallowEqual';
 
 export default class Select2 extends Component {
   static propTypes = {
     defaultValue: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.array,
+      PropTypes.string,
+    ]),
+    value: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.array,
       PropTypes.string,
@@ -45,6 +51,16 @@ export default class Select2 extends Component {
     this.props.events.forEach(event => {
       this.el.on(event[0], this.props[event[1]]);
     });
+    const { defaultValue, value } = this.props;
+    if (defaultValue === (void 0) && value !== (void 0)) {
+      this.setValue(value);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.el && nextProps.value !== this.props.value) {
+      this.setValue(nextProps.value);
+    }
   }
 
   componentWillUnmount() {
@@ -54,9 +70,15 @@ export default class Select2 extends Component {
     this.el.select2('destroy');
   }
 
-  render() {
-    const { data, ...params } = this.props;
+  setValue(value) {
+    const elVal = this.el.val();
+    if (!shallowEqual(elVal, value)) {
+      this.el.val(value).trigger('change');
+    }
+  }
 
+  render() {
+    const { data, value, ...params } = this.props;
     return (
       <select {...params}>
         {data.map((item, k) => {
