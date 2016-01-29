@@ -60,11 +60,11 @@ export default class Select2 extends Component {
         {data.map((item, k) => {
           if (typeof item === 'string' ||
             ((!!item && typeof item === 'object') && Object.prototype.toString.call(item) === '[object String]')) {
-            return (<option key={'option-' + k} value={item}>{item}</option>);
+            return (<option key={`option-${k}`} value={item}>{item}</option>);
           }
 
           const { id, text, ...itemParams } = item;
-          return (<option key={'option-' + k} value={id} {...itemParams}>{text}</option>);
+          return (<option key={`option-${k}`} value={id} {...itemParams}>{text}</option>);
         })}
       </select>
     );

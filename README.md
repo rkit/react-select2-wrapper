@@ -17,11 +17,14 @@ import Select2 from 'react-select2-wrapper';
 …
 
 <Select2
- multiple={true}
- data={['bug', 'feature', 'documents', 'discussion']}
- options={{
-   placeholder: 'search by tags',
- }} />
+  multiple
+  data={['bug', 'feature', 'documents', 'discussion']}
+  options={
+    {
+      placeholder: 'search by tags',
+    }
+  }
+/>
 ```
 
 ### With data as an object
@@ -37,23 +40,26 @@ import Select2 from 'react-select2-wrapper';
   ]}
   options={{
     placeholder: 'search by tags',
-  }} />
+  }}
+/>
 ```
 
 ### With callbacks
 
 ```js
 <Select2
- multiple={true}
- data={['bug', 'feature', 'documents', 'discussion']}
- onOpen={() => { console.log('onOpen'); } }
- onClose={() => { console.log('onClose'); } }
- onSelect={() => { console.log('onSelect'); } }
- onChange={() => { console.log('onChange'); } }
- onUnselect={() => { console.log('onUnselect'); } }
- options={{
-   placeholder: 'search by tags',
- }} />
+  multiple
+  data={['bug', 'feature', 'documents', 'discussion']}
+  onOpen={this.cbOpen}
+  onClose={this.cbClose}
+  onSelect={this.cbSelect}
+  onChange={this.cbChange}
+  onUnselect={this.cbUnselect}
+  options={{
+    placeholder: 'search by tags',
+  }
+}
+/>
 ```
 
 ### With default value
@@ -70,14 +76,15 @@ import Select2 from 'react-select2-wrapper';
   ]}
   options={{
     placeholder: 'search by tags',
-  }} />
+  }}
+/>
 ```
 
 ### With default multiple value
 
 ```js
 <Select2
-  multiple={true}
+  multiple
   defaultValue={[1, 4]}
   data={[
     { text: 'bug', id: 1 },
@@ -87,7 +94,8 @@ import Select2 from 'react-select2-wrapper';
   ]}
   options={{
     placeholder: 'search by tags',
-  }} />
+  }}
+/>
 ```
 
 ### Properties

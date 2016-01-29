@@ -8,12 +8,17 @@ export default class Tags extends Component {
       <div>
         Basic usage<br/>
         <Select2
-         multiple={true}
-         data={['bug', 'feature', 'documents', 'discussion']}
-         options={{
-           placeholder: 'search by tags',
-         }} />
+          multiple
+          data={['bug', 'feature', 'documents', 'discussion']}
+          options={
+            {
+              placeholder: 'search by tags',
+            }
+          }
+        />
+
         <br/><br/>
+
         With data as an object<br/>
         <Select2
           multiple={false}
@@ -25,21 +30,28 @@ export default class Tags extends Component {
           ]}
           options={{
             placeholder: 'search by tags',
-          }} />
+          }}
+        />
+
         <br/><br/>
+
         With callbacks<br/>
         <Select2
-         multiple={true}
-         data={['bug', 'feature', 'documents', 'discussion']}
-         onOpen={() => { console.log('onOpen'); } }
-         onClose={() => { console.log('onClose'); } }
-         onSelect={() => { console.log('onSelect'); } }
-         onChange={() => { console.log('onChange'); } }
-         onUnselect={() => { console.log('onUnselect'); } }
-         options={{
-           placeholder: 'search by tags',
-         }} />
+          multiple
+          data={['bug', 'feature', 'documents', 'discussion']}
+          onOpen={this.cbOpen}
+          onClose={this.cbClose}
+          onSelect={this.cbSelect}
+          onChange={this.cbChange}
+          onUnselect={this.cbUnselect}
+          options={{
+            placeholder: 'search by tags',
+          }
+        }
+        />
+
         <br/><br/>
+
         With default value<br/>
         <Select2
           multiple={false}
@@ -52,11 +64,14 @@ export default class Tags extends Component {
           ]}
           options={{
             placeholder: 'search by tags',
-          }} />
+          }}
+        />
+
         <br/><br/>
+
         With default multiple value<br/>
         <Select2
-          multiple={true}
+          multiple
           defaultValue={[1, 4]}
           data={[
             { text: 'bug', id: 1 },
@@ -66,7 +81,8 @@ export default class Tags extends Component {
           ]}
           options={{
             placeholder: 'search by tags',
-          }} />
+          }}
+        />
       </div>
     );
   }
