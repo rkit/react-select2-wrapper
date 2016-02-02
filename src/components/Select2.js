@@ -42,13 +42,15 @@ export default class Select2 extends Component {
   componentDidMount() {
     this.el = $(ReactDOM.findDOMNode(this));
     this.el.select2(this.props.options);
-
     this.props.events.forEach(event => {
       this.el.on(event[0], this.props[event[1]]);
     });
   }
 
   componentWillUnmount() {
+    this.props.events.forEach(event => {
+      this.el.off(event[0], this.props[event[1]]);
+    });
     this.el.select2('destroy');
   }
 
