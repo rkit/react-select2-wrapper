@@ -35,6 +35,8 @@ module.exports = {
     noParse: [],
   },
 
+  devtool: 'eval-source-map',
+  
   plugins: [
     new ExtractTextPlugin('[name].css'),
     new webpack.optimize.DedupePlugin(),
