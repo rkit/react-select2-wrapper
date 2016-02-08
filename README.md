@@ -27,7 +27,7 @@ import Select2 from 'react-select2-wrapper';
 />
 ```
 
-### With data as an object
+### Data as an object
 
 ```js
 <Select2
@@ -44,7 +44,7 @@ import Select2 from 'react-select2-wrapper';
 />
 ```
 
-### With callbacks
+### Callbacks
 
 ```js
 <Select2
@@ -62,7 +62,7 @@ import Select2 from 'react-select2-wrapper';
 />
 ```
 
-### With default value
+### Default value
 
 ```js
 <Select2
@@ -80,7 +80,7 @@ import Select2 from 'react-select2-wrapper';
 />
 ```
 
-### With default multiple value
+### Default multiple value
 
 ```js
 <Select2
