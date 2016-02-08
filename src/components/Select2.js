@@ -49,7 +49,7 @@ export default class Select2 extends Component {
     this.initSelect2();
     this.props.events.forEach(event => {
       this.el.on(event[0], this.props[event[1]]);
-    });    
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -95,18 +95,22 @@ export default class Select2 extends Component {
     this.el = null;
   }
 
+  isObject(value) {
+    const type = typeof value;
+    return type === 'function' || (value && type === 'object') || false;
+  }
+
   render() {
     const { data, value, ...params } = this.props;
     return (
       <select {...params}>
         {data.map((item, k) => {
-          if (typeof item === 'string' ||
-            ((!!item && typeof item === 'object') && Object.prototype.toString.call(item) === '[object String]')) {
-            return (<option key={`option-${k}`} value={item}>{item}</option>);
+          if (this.isObject(item)) {
+            const { id, text, ...itemParams } = item;
+            return (<option key={`option-${k}`} value={id} {...itemParams}>{text}</option>);
           }
 
-          const { id, text, ...itemParams } = item;
-          return (<option key={`option-${k}`} value={id} {...itemParams}>{text}</option>);
+          return (<option key={`option-${k}`} value={item}>{item}</option>);
         })}
       </select>
     );
