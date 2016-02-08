@@ -90,7 +90,7 @@ export default class Select2 extends Component {
   }
 
   destroySelect2() {
-    if(!this.el) { return; }
+    if (!this.el) { return; }
     this.el.select2('destroy');
     this.el = null;
   }
