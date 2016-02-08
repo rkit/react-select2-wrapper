@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Select2 from '../../../src/components/Select2';
 import '../../../css/select2.css';
-import $ from 'jquery';
-/* eslint react/jsx-no-bind: 0, arrow-spacing: 0 */
+
 export default class Tags extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +13,53 @@ export default class Tags extends Component {
         { text: 'feature', id: 2 },
         { text: 'documents', id: 3 },
         { text: 'discussion', id: 4 },
-      ]
+      ],
     };
+
+    this.changeExample1 = this.changeExample1.bind(this);
+    this.changeExample2 = this.changeExample2.bind(this);
+    this.changeExample6 = this.changeExample6.bind(this);
   }
-  render() {
-    const { value1, value2, data6 } = this.state;
+
+  changeExample1() {
+    this.setState({ value1: ['bug', 'discussion'] });
+  }
+
+  changeExample2() {
+    this.setState({ value2: 3 });
+  }
+
+  changeExample6() {
+    this.setState({ data6: [
+      { text: 'bug_new', id: 1 },
+      { text: 'feature_new', id: 2 },
+      { text: 'documents_new', id: 3 },
+      { text: 'discussion_new', id: 4 },
+    ] });
+  }
+
+  cbOpen() {
+    console.log('onOpen');
+  }
+
+  cbClose() {
+    console.log('cbClose');
+  }
+
+  cbSelect() {
+    console.log('cbSelect');
+  }
+
+  cbChange() {
+    console.log('cbChange');
+  }
+
+  cbUnselect() {
+    console.log('cbUnselect');
+  }
+
+  renderBasicUsage() {
+    const { value1 } = this.state;
     return (
       <div>
         Basic usage<br/>
@@ -26,19 +67,23 @@ export default class Tags extends Component {
           multiple
           data={['bug', 'feature', 'documents', 'discussion']}
           value={ value1 }
-          onChange={(e)=> {
-            this.setState({ value1: $(e.target).val() });
-          }}
           options={
             {
               placeholder: 'search by tags',
             }
           }
         />
-        <button onClick={ ()=> this.setState({ value1: ['bug', 'discussion'] }) }>Set 'bug' 'discussion' value</button>
-        <br/><br/>
+        —
+        <button onClick={this.changeExample1}>set 'bug' 'discussion' value</button>
+      </div>
+    );
+  }
 
-        With data as an object<br/>
+  renderDataAsObject() {
+    const { value2 } = this.state;
+    return (
+      <div>
+        Data as an object<br/>
         <Select2
           multiple={false}
           data={[
@@ -49,17 +94,20 @@ export default class Tags extends Component {
           ]}
           defaultValue={ 1 }
           value={ value2 }
-          onChange={ (e)=> {
-            this.setState({ value2: +$(e.target).val() });
-          }}
           options={{
             placeholder: 'search by tags',
           }}
         />
-        <button onClick={ ()=> this.setState({ value2: 3 }) }>Set 'documents' value</button>
-        <br/><br/>
+        —
+        <button onClick={this.changeExample2}>set 'documents' value</button>
+      </div>
+    );
+  }
 
-        With callbacks<br/>
+  renderCallbacks() {
+    return (
+      <div>
+        Callbacks<br/>
         <Select2
           multiple
           data={['bug', 'feature', 'documents', 'discussion']}
@@ -73,10 +121,14 @@ export default class Tags extends Component {
           }
         }
         />
+      </div>
+    );
+  }
 
-        <br/><br/>
-
-        With default value<br/>
+  renderDefaultValue() {
+    return (
+      <div>
+        Default value<br/>
         <Select2
           multiple={false}
           defaultValue={2}
@@ -90,10 +142,14 @@ export default class Tags extends Component {
             placeholder: 'search by tags',
           }}
         />
+      </div>
+    );
+  }
 
-        <br/><br/>
-
-        With default multiple value<br/>
+  renderDefaultMultipleValue() {
+    return (
+      <div>
+        Default multiple value<br/>
         <Select2
           multiple
           defaultValue={[1, 4]}
@@ -107,8 +163,15 @@ export default class Tags extends Component {
             placeholder: 'search by tags',
           }}
         />
+      </div>
+    );
+  }
 
-        <br/><br/>
+  renderDynamicUpdateData() {
+    const { data6 } = this.state;
+    return (
+      <div>
+        Dynamic update data<br/>
         <Select2
           defaultValue={1}
           data={ data6 }
@@ -116,14 +179,27 @@ export default class Tags extends Component {
             placeholder: 'search by tags',
           }}
         />
-        <button onClick={ ()=> this.setState({ data6: [
-          { text: 'BUG', id: 1 },
-          { text: 'FEATURE', id: 2 },
-          { text: 'DOCUMENTS', id: 3 },
-          { text: 'DISCUSSION', id: 4 },
-        ]}) }>Reload data value</button>
+        —
+        <button onClick={this.changeExample6}>reload data value</button>
+      </div>
+    );
+  }
 
-
+  render() {
+    return (
+      <div>
+        {/* example 1 */}
+        {this.renderBasicUsage()}<br/>
+        {/* example 2 */}
+        {this.renderDataAsObject()}<br/>
+        {/* example 3 */}
+        {this.renderCallbacks()}<br/>
+        {/* example 4 */}
+        {this.renderDefaultValue()}<br/>
+        {/* example 5 */}
+        {this.renderDefaultMultipleValue()}<br/>
+        {/* example 6 */}
+        {this.renderDynamicUpdateData()}
       </div>
     );
   }
