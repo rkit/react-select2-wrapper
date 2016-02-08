@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import 'select2';
-import shallowEqual from 'fbjs/lib/shallowEqual';
+import shallowEqualFuzzy from 'shallow-equal-fuzzy';
 
 export default class Select2 extends Component {
   static propTypes = {
@@ -72,7 +72,7 @@ export default class Select2 extends Component {
 
   setValue(value) {
     const elVal = this.el.val();
-    if (!shallowEqual(elVal, value)) {
+    if (!shallowEqualFuzzy(elVal, value)) {
       this.el.val(value).trigger('change');
     }
   }
