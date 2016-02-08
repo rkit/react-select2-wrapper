@@ -15,47 +15,6 @@ export default class Tags extends Component {
         { text: 'discussion', id: 4 },
       ],
     };
-
-    this.changeExample1 = this.changeExample1.bind(this);
-    this.changeExample2 = this.changeExample2.bind(this);
-    this.changeExample6 = this.changeExample6.bind(this);
-  }
-
-  changeExample1() {
-    this.setState({ value1: ['bug', 'discussion'] });
-  }
-
-  changeExample2() {
-    this.setState({ value2: 3 });
-  }
-
-  changeExample6() {
-    this.setState({ data6: [
-      { text: 'bug_new', id: 1 },
-      { text: 'feature_new', id: 2 },
-      { text: 'documents_new', id: 3 },
-      { text: 'discussion_new', id: 4 },
-    ] });
-  }
-
-  cbOpen() {
-    console.log('onOpen');
-  }
-
-  cbClose() {
-    console.log('cbClose');
-  }
-
-  cbSelect() {
-    console.log('cbSelect');
-  }
-
-  cbChange() {
-    console.log('cbChange');
-  }
-
-  cbUnselect() {
-    console.log('cbUnselect');
   }
 
   renderBasicUsage() {
@@ -74,7 +33,9 @@ export default class Tags extends Component {
           }
         />
         —
-        <button onClick={this.changeExample1}>set 'bug' 'discussion' value</button>
+        <button onClick={() => this.setState({ value1: ['bug', 'discussion'] })}>
+          set 'bug' 'discussion' value
+        </button>
       </div>
     );
   }
@@ -99,7 +60,9 @@ export default class Tags extends Component {
           }}
         />
         —
-        <button onClick={this.changeExample2}>set 'documents' value</button>
+        <button onClick={() => this.setState({ value2: 3 })}>
+          set 'documents' value
+        </button>
       </div>
     );
   }
@@ -111,11 +74,11 @@ export default class Tags extends Component {
         <Select2
           multiple
           data={['bug', 'feature', 'documents', 'discussion']}
-          onOpen={this.cbOpen}
-          onClose={this.cbClose}
-          onSelect={this.cbSelect}
-          onChange={this.cbChange}
-          onUnselect={this.cbUnselect}
+          onOpen={() => console.log('onOpen')}
+          onClose={() => console.log('onClose')}
+          onSelect={() => console.log('onSelect')}
+          onChange={() => console.log('onChange')}
+          onUnselect={() => console.log('onUnselect')}
           options={{
             placeholder: 'search by tags',
           }
@@ -180,7 +143,17 @@ export default class Tags extends Component {
           }}
         />
         —
-        <button onClick={this.changeExample6}>reload data value</button>
+        <button onClick={() => this.setState({
+          data6: [
+            { text: 'bug_new', id: 1 },
+            { text: 'feature_new', id: 2 },
+            { text: 'documents_new', id: 3 },
+            { text: 'discussion_new', id: 4 },
+          ],
+        })}
+        >
+          reload data value
+        </button>
       </div>
     );
   }
