@@ -1,0 +1,20 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    // max length
+    "max-len": [2, 120, 2],
+    // validate JSDoc
+    "valid-jsdoc": 2,
+    // disable requirement to use initial caps for constructors
+    "new-cap": 0,
+    // 2 space indent
+    "indent": [2, 2, {"SwitchCase": 1}],
+    // disable limit length for identifiers
+    "id-length": 0,
+    // disable jsx-no-bind
+    "react/jsx-no-bind": 0,
+    // disable no-console
+    "no-console": 0,
+  }
+}
