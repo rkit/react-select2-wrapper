@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import shallowEqualFuzzy from 'shallow-equal-fuzzy';
 import $ from 'jquery';
 import 'select2';
-import shallowEqualFuzzy from 'shallow-equal-fuzzy';
 
 export default class Select2 extends Component {
   static propTypes = {
@@ -47,9 +47,6 @@ export default class Select2 extends Component {
 
   componentDidMount() {
     this.initSelect2();
-    this.props.events.forEach(event => {
-      this.el.on(event[0], this.props[event[1]]);
-    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,15 +57,12 @@ export default class Select2 extends Component {
 
   componentDidUpdate(prevProps) {
     if (!shallowEqualFuzzy(prevProps.data, this.props.data)) {
-      this.destroySelect2();
-      this.initSelect2();
+      this.destroySelect2(false);
+      this.initSelect2(false);
     }
   }
 
   componentWillUnmount() {
-    this.props.events.forEach(event => {
-      this.el.off(event[0], this.props[event[1]]);
-    });
     this.destroySelect2();
   }
 
@@ -79,18 +73,37 @@ export default class Select2 extends Component {
     }
   }
 
-  initSelect2() {
+  initSelect2(withCallbacks = true) {
     if (this.el) { return; }
+    const { defaultValue, value, options, events } = this.props;
+
     this.el = $(ReactDOM.findDOMNode(this));
-    this.el.select2(this.props.options);
-    const { defaultValue, value } = this.props;
-    if (defaultValue === (void 0) && value !== (void 0)) {
+    this.el.select2(options);
+
+    if (withCallbacks) {
+      events.forEach(event => {
+        if (typeof this.props[event[1]] !== 'undefined') {
+          this.el.on(event[0], this.props[event[1]]);
+        }
+      });
+    }
+
+    if (typeof defaultValue === 'undefined' && typeof value !== 'undefined') {
       this.setValue(value);
     }
   }
 
-  destroySelect2() {
+  destroySelect2(withCallbacks = true) {
     if (!this.el) { return; }
+
+    if (withCallbacks) {
+      this.props.events.forEach(event => {
+        if (typeof this.props[event[1]] !== 'undefined') {
+          this.el.off(event[0], this.props[event[1]]);
+        }
+      });
+    }
+
     this.el.select2('destroy');
     this.el = null;
   }
