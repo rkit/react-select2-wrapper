@@ -80,6 +80,8 @@ import Select2 from 'react-select2-wrapper';
 />
 ```
 
+> Also possible to change the current value using `value` property
+
 ### Default multiple value
 
 ```js
