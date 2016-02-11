@@ -31,7 +31,6 @@ import Select2 from 'react-select2-wrapper';
 
 ```js
 <Select2
-  multiple={false}
   data={[
     { text: 'bug', id: 1 },
     { text: 'feature', id: 2 },
@@ -66,7 +65,6 @@ import Select2 from 'react-select2-wrapper';
 
 ```js
 <Select2
-  multiple={false}
   defaultValue={2} // or as string | array
   data={[
     { text: 'bug', id: 1 },
@@ -79,7 +77,6 @@ import Select2 from 'react-select2-wrapper';
   }}
 />
 ```
-
 > Also possible to change the current value using `value` property
 
 ### Default multiple value
@@ -92,6 +89,23 @@ import Select2 from 'react-select2-wrapper';
     { text: 'bug', id: 1 },
     { text: 'feature', id: 2 },
     { text: 'documents', id: 3 },
+    { text: 'discussion', id: 4 },
+  ]}
+  options={{
+    placeholder: 'search by tags',
+  }}
+/>
+```
+
+### Value
+```js
+const { value } = this.props;
+<Select2
+  value={ value } 
+  data={[
+    { text: 'bug', id: 1 },
+    { text: 'feature', id: 2 },
+    { text: 'documents', id: 3, disabled: true },
     { text: 'discussion', id: 4 },
   ]}
   options={{
