@@ -104,11 +104,32 @@ Also possible to change the current value using `value` property
 const { value } = this.props;
 …
 <Select2
-  value={ value } 
+  value={ value }
   data={[
     { text: 'bug', id: 1 },
     { text: 'feature', id: 2 },
     { text: 'documents', id: 3, disabled: true },
+    { text: 'discussion', id: 4 },
+  ]}
+  options={{
+    placeholder: 'search by tags',
+  }}
+/>
+```
+
+### Option Groups
+
+```js
+<Select2
+  multiple
+  data={[
+    { text: 'Development',
+      children: [
+        { text: 'bug', id: 1 },
+        { text: 'feature', id: 2 },
+      ],
+    },
+    { text: 'documents', id: 3 },
     { text: 'discussion', id: 4 },
   ]}
   options={{
