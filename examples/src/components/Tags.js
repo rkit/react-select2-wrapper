@@ -166,10 +166,12 @@ export default class Tags extends Component {
           multiple
           defaultValue={[1, 4]}
           data={[
-            { text: 'Development', 
+            { text: 'Development',
               children: [
-              { text: 'bug', id: 1 },
-              { text: 'feature', id: 2 }]},
+                { text: 'bug', id: 1 },
+                { text: 'feature', id: 2 },
+              ],
+            },
             { text: 'documents', id: 3 },
             { text: 'discussion', id: 4 },
           ]}
