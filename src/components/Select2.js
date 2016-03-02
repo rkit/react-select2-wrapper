@@ -112,18 +112,28 @@ export default class Select2 extends Component {
     const type = typeof value;
     return type === 'function' || (value && type === 'object') || false;
   }
+  makeOption(item, k) {
+    if (this.isObject(item)) {
+      const { id, text, ...itemParams } = item;
+      return (<option key={`option-${k}`} value={id} {...itemParams}>{text}</option>);
+    }
+
+    return (<option key={`option-${k}`} value={item}>{item}</option>);
+  }
+
 
   render() {
     const { data, value, ...params } = this.props;
     return (
       <select {...params}>
         {data.map((item, k) => {
-          if (this.isObject(item)) {
-            const { id, text, ...itemParams } = item;
-            return (<option key={`option-${k}`} value={id} {...itemParams}>{text}</option>);
+          if (this.isObject(item) && this.isObject(item.children)) {
+            const { children, text, ...itemParams } = item;
+            return (<optgroup key={`optgroup-${k}`} label={text} {...itemParams}>
+              {children.map((child, k2) => this.makeOption(child, `${k}-${k2}`))}
+              </optgroup>);
           }
-
-          return (<option key={`option-${k}`} value={item}>{item}</option>);
+          return this.makeOption(item, k);
         })}
       </select>
     );

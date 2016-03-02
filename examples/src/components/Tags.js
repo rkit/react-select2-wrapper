@@ -158,6 +158,30 @@ export default class Tags extends Component {
     );
   }
 
+  renderOptGroups() {
+    return (
+      <div>
+        Option Groups<br/>
+        <Select2
+          multiple
+          defaultValue={[1, 4]}
+          data={[
+            { text: 'Development', 
+              children: [
+              { text: 'bug', id: 1 },
+              { text: 'feature', id: 2 }]},
+            { text: 'documents', id: 3 },
+            { text: 'discussion', id: 4 },
+          ]}
+          options={{
+            placeholder: 'search by tags',
+          }}
+        />
+      </div>
+    );
+  }
+
+
   render() {
     return (
       <div>
@@ -172,7 +196,9 @@ export default class Tags extends Component {
         {/* example 5 */}
         {this.renderDefaultMultipleValue()}<br/>
         {/* example 6 */}
-        {this.renderDynamicUpdateData()}
+        {this.renderDynamicUpdateData()}<br/>
+        {/* example 7 */}
+        {this.renderOptGroups()}
       </div>
     );
   }
