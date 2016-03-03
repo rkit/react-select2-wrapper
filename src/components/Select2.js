@@ -122,7 +122,6 @@ export default class Select2 extends Component {
     return (<option key={`option-${k}`} value={item}>{item}</option>);
   }
 
-
   render() {
     const { data, value, ...params } = this.props;
     return (
