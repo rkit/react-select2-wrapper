@@ -4,6 +4,8 @@ import shallowEqualFuzzy from 'shallow-equal-fuzzy';
 import $ from 'jquery';
 import 'select2';
 
+const namespace = 'react-select2-wrapper';
+
 export default class Select2 extends Component {
   static propTypes = {
     defaultValue: PropTypes.oneOfType([
@@ -30,11 +32,11 @@ export default class Select2 extends Component {
   static defaultProps = {
     data: [],
     events: [
-      ['change', 'onChange'],
-      ['select2:open', 'onOpen'],
-      ['select2:close', 'onClose'],
-      ['select2:select', 'onSelect'],
-      ['select2:unselect', 'onUnselect'],
+      [`change.${namespace}`, 'onChange'],
+      [`select2:open.${namespace}`, 'onOpen'],
+      [`select2:close.${namespace}`, 'onClose'],
+      [`select2:select.${namespace}`, 'onSelect'],
+      [`select2:unselect.${namespace}`, 'onUnselect'],
     ],
     options: {},
     multiple: false,
@@ -60,6 +62,13 @@ export default class Select2 extends Component {
       this.destroySelect2(false);
       this.initSelect2(false);
     }
+
+    const handlerChanged = e => prevProps[e[1]] !== this.props[e[1]];
+
+    if (this.props.events.some(handlerChanged)) {
+      this.detachEventHandlers();
+      this.attachEventHandlers();
+    }
   }
 
   componentWillUnmount() {
@@ -75,17 +84,13 @@ export default class Select2 extends Component {
 
   initSelect2(withCallbacks = true) {
     if (this.el) { return; }
-    const { defaultValue, value, options, events } = this.props;
+    const { defaultValue, value, options } = this.props;
 
     this.el = $(ReactDOM.findDOMNode(this));
     this.el.select2(options);
 
     if (withCallbacks) {
-      events.forEach(event => {
-        if (typeof this.props[event[1]] !== 'undefined') {
-          this.el.on(event[0], this.props[event[1]]);
-        }
-      });
+      this.attachEventHandlers();
     }
 
     if (typeof defaultValue === 'undefined' && typeof value !== 'undefined') {
@@ -97,15 +102,27 @@ export default class Select2 extends Component {
     if (!this.el) { return; }
 
     if (withCallbacks) {
-      this.props.events.forEach(event => {
-        if (typeof this.props[event[1]] !== 'undefined') {
-          this.el.off(event[0], this.props[event[1]]);
-        }
-      });
+      this.detachEventHandlers();
     }
 
     this.el.select2('destroy');
     this.el = null;
+  }
+
+  attachEventHandlers() {
+    this.props.events.forEach(event => {
+      if (typeof this.props[event[1]] !== 'undefined') {
+        this.el.on(event[0], this.props[event[1]]);
+      }
+    });
+  }
+
+  detachEventHandlers() {
+    this.props.events.forEach(event => {
+      if (typeof this.props[event[1]] !== 'undefined') {
+        this.el.off(event[0]);
+      }
+    });
   }
 
   isObject(value) {
