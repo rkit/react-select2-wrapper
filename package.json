@@ -26,13 +26,12 @@
     "select",
     "input"
   ],
-
   "dependencies": {
     "jquery": "^2.1.4",
     "react": "^0.14.0",
     "react-dom": "^0.14.1",
     "select2": "^4.0.0",
-    "shallow-equal-fuzzy": "0.0.1"
+    "shallow-equal-fuzzy": "^0.0.2"
   },
   "devDependencies": {
     "babel": "^6.3.26",
