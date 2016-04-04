@@ -3,6 +3,10 @@
   "version": "0.5.1",
   "description": "React component for Select2",
   "main": "lib/components/Select2.js",
+  "files": [
+    "lib",
+    "src"
+  ],
   "scripts": {
     "start": "cd examples && node server.js",
     "watch": "cd examples && webpack --watch",
