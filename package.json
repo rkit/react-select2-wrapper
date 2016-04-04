@@ -5,7 +5,8 @@
   "main": "lib/components/Select2.js",
   "files": [
     "lib",
-    "src"
+    "src",
+    "css"
   ],
   "scripts": {
     "start": "cd examples && node server.js",
