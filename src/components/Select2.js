@@ -86,6 +86,10 @@ export default class Select2 extends Component {
     if (this.el) { return; }
     const { defaultValue, value, options } = this.props;
 
+    if (typeof options.dropdownParent === 'string') {
+      options.dropdownParent = $(options.dropdownParent);
+    }
+
     this.el = $(ReactDOM.findDOMNode(this));
     this.el.select2(options);
 
