@@ -138,6 +138,15 @@ const { value } = this.props;
 />
 ```
 
+### Parent element for dropdown
+
+```js
+<Select2
+  options={{
+    dropdownParent: '#element'
+  …
+```
+
 ### Properties
 
 You can pass any properties such as `class`, `id`, `data-*` attributes
