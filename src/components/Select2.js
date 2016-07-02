@@ -144,7 +144,17 @@ export default class Select2 extends Component {
   }
 
   render() {
-    const { data, value, ...params } = this.props;
+    const { data, value, ...props } = this.props;
+    const params = Object.assign(props);
+
+    delete params.options;
+    delete params.events;
+    delete params.onOpen;
+    delete params.onClose;
+    delete params.onSelect;
+    delete params.onChange;
+    delete params.onUnselect;
+
     return (
       <select {...params}>
         {data.map((item, k) => {
