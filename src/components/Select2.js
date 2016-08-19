@@ -151,18 +151,17 @@ export default class Select2 extends Component {
 
   render() {
     const { data, value, ...props } = this.props;
-    const params = Object.assign(props);
 
-    delete params.options;
-    delete params.events;
-    delete params.onOpen;
-    delete params.onClose;
-    delete params.onSelect;
-    delete params.onChange;
-    delete params.onUnselect;
+    delete props.options;
+    delete props.events;
+    delete props.onOpen;
+    delete props.onClose;
+    delete props.onSelect;
+    delete props.onChange;
+    delete props.onUnselect;
 
     return (
-      <select {...params}>
+      <select {...props}>
         {data.map((item, k) => {
           if (this.isObject(item) && this.isObject(item.children)) {
             const { children, text, ...itemParams } = item;
