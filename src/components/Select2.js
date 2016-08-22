@@ -69,6 +69,10 @@ export default class Select2 extends Component {
       this.initSelect2(false);
     }
 
+    if (!shallowEqualFuzzy(prevProps.options, this.props.options)) {
+      this.el.select2(this.props.options);
+    }
+
     const handlerChanged = e => prevProps[e[1]] !== this.props[e[1]];
 
     if (this.props.events.some(handlerChanged)) {
