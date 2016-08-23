@@ -63,6 +63,13 @@ export default class Select2 extends Component {
     }
   }
 
+  prepareOptions() {
+    const { options } = this.props;
+    if (typeof options.dropdownParent === 'string') {
+      options.dropdownParent = $(options.dropdownParent);
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (!shallowEqualFuzzy(prevProps.data, this.props.data)) {
       this.destroySelect2(false);
@@ -71,9 +78,7 @@ export default class Select2 extends Component {
 
     const { options } = this.props;
     if (!shallowEqualFuzzy(prevProps.options, options)) {
-      if (typeof options.dropdownParent === 'string') {
-        options.dropdownParent = $(options.dropdownParent);
-      }
+      this.prepareOptions();
       this.el.select2(options);
     }
 
@@ -100,11 +105,8 @@ export default class Select2 extends Component {
     if (this.el) { return; }
     const { defaultValue, value, options } = this.props;
 
-    if (typeof options.dropdownParent === 'string') {
-      options.dropdownParent = $(options.dropdownParent);
-    }
-
     this.el = $(ReactDOM.findDOMNode(this));
+    this.prepareOptions();
     this.el.select2(options);
 
     if (withCallbacks) {
