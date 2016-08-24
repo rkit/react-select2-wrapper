@@ -53,10 +53,12 @@ export default class Select2 extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.el) {
-      let value = nextProps.value;
+      let { value } = nextProps;
       const { defaultValue } = this.props;
-      const setDefaultValue = typeof defaultValue !== 'undefined' && (typeof value === 'undefined' || value === null);
-      if (setDefaultValue) {
+      const issetValue = typeof value !== 'undefined' && value !== null;
+      const issetDefaultValue = typeof defaultValue !== 'undefined';
+
+      if (!issetValue && issetDefaultValue) {
         value = defaultValue;
       }
       this.setValue(value);
