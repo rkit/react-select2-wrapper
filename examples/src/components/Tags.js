@@ -7,8 +7,9 @@ export default class Tags extends Component {
     super(props);
     this.state = {
       value1: ['feature'],
-      value2: null,
-      data6: [
+      value2: ['feature'],
+      value3: null,
+      data7: [
         { text: 'bug', id: 1 },
         { text: 'feature', id: 2 },
         { text: 'documents', id: 3 },
@@ -40,8 +41,37 @@ export default class Tags extends Component {
     );
   }
 
-  renderDataAsObject() {
+  renderBasicUsageMutated() {
     const { value2 } = this.state;
+    return (
+      <div>
+        Basic usage with mutated value<br/>
+        <Select2
+          multiple
+          data={['bug', 'feature', 'documents', 'discussion']}
+          value={ value2 }
+          options={
+            {
+              placeholder: 'search by tags',
+            }
+          }
+        />
+        —
+        <button onClick={
+          () => {
+            const items = value2;
+            items.push('documents');
+            this.setState({ value2: items });
+          }}
+        >
+          set 'feature' 'documents' value
+        </button>
+      </div>
+    );
+  }
+
+  renderDataAsObject() {
+    const { value3 } = this.state;
     return (
       <div>
         Data as an object<br/>
@@ -54,13 +84,13 @@ export default class Tags extends Component {
             { text: 'discussion', id: 4 },
           ]}
           defaultValue={ 1 }
-          value={ value2 }
+          value={ value3 }
           options={{
             placeholder: 'search by tags',
           }}
         />
         —
-        <button onClick={() => this.setState({ value2: 3 })}>
+        <button onClick={() => this.setState({ value3: 3 })}>
           set 'documents' value
         </button>
       </div>
@@ -131,20 +161,20 @@ export default class Tags extends Component {
   }
 
   renderDynamicUpdateData() {
-    const { data6 } = this.state;
+    const { data7 } = this.state;
     return (
       <div>
         Dynamic update data<br/>
         <Select2
           defaultValue={1}
-          data={ data6 }
+          data={ data7 }
           options={{
             placeholder: 'search by tags',
           }}
         />
         —
         <button onClick={() => this.setState({
-          data6: [
+          data7: [
             { text: 'bug_new', id: 1 },
             { text: 'feature_new', id: 2 },
             { text: 'documents_new', id: 3 },
@@ -190,16 +220,18 @@ export default class Tags extends Component {
         {/* example 1 */}
         {this.renderBasicUsage()}<br/>
         {/* example 2 */}
-        {this.renderDataAsObject()}<br/>
+        {this.renderBasicUsageMutated()}<br/>
         {/* example 3 */}
-        {this.renderCallbacks()}<br/>
+        {this.renderDataAsObject()}<br/>
         {/* example 4 */}
-        {this.renderDefaultValue()}<br/>
+        {this.renderCallbacks()}<br/>
         {/* example 5 */}
-        {this.renderDefaultMultipleValue()}<br/>
+        {this.renderDefaultValue()}<br/>
         {/* example 6 */}
-        {this.renderDynamicUpdateData()}<br/>
+        {this.renderDefaultMultipleValue()}<br/>
         {/* example 7 */}
+        {this.renderDynamicUpdateData()}<br/>
+        {/* example 8 */}
         {this.renderOptGroups()}
       </div>
     );
