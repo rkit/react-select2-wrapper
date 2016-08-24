@@ -53,15 +53,7 @@ export default class Select2 extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.el) {
-      let { value } = nextProps;
-      const { defaultValue } = this.props;
-      const issetValue = typeof value !== 'undefined' && value !== null;
-      const issetDefaultValue = typeof defaultValue !== 'undefined';
-
-      if (!issetValue && issetDefaultValue) {
-        value = defaultValue;
-      }
-      this.setValue(value);
+      this.setValue(this.prepareValue(nextProps.value, this.props.defaultValue));
     }
   }
 
@@ -69,12 +61,11 @@ export default class Select2 extends Component {
     if (!shallowEqualFuzzy(prevProps.data, this.props.data)) {
       this.destroySelect2(false);
       this.initSelect2(false);
-    }
-
-    const { options } = this.props;
-    if (!shallowEqualFuzzy(prevProps.options, options)) {
-      this.prepareOptions();
-      this.el.select2(options);
+    } else {
+      const { options } = this.props;
+      if (!shallowEqualFuzzy(prevProps.options, options)) {
+        this.el.select2(this.prepareOptions(options));
+      }
     }
 
     const handlerChanged = e => prevProps[e[1]] !== this.props[e[1]];
@@ -96,11 +87,22 @@ export default class Select2 extends Component {
     }
   }
 
-  prepareOptions() {
-    const { options } = this.props;
-    if (typeof options.dropdownParent === 'string') {
-      options.dropdownParent = $(options.dropdownParent);
+  prepareValue(value, defaultValue) {
+    const issetValue = typeof value !== 'undefined' && value !== null;
+    const issetDefaultValue = typeof defaultValue !== 'undefined';
+
+    if (!issetValue && issetDefaultValue) {
+      return defaultValue;
     }
+    return value;
+  }
+
+  prepareOptions(options) {
+    const opt = options;
+    if (typeof opt.dropdownParent === 'string') {
+      opt.dropdownParent = $(opt.dropdownParent);
+    }
+    return opt;
   }
 
   initSelect2(withCallbacks = true) {
@@ -108,8 +110,7 @@ export default class Select2 extends Component {
     const { defaultValue, value, options } = this.props;
 
     this.el = $(ReactDOM.findDOMNode(this));
-    this.prepareOptions();
-    this.el.select2(options);
+    this.el.select2(this.prepareOptions(options));
 
     if (withCallbacks) {
       this.attachEventHandlers();
