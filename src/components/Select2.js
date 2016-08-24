@@ -63,13 +63,6 @@ export default class Select2 extends Component {
     }
   }
 
-  prepareOptions() {
-    const { options } = this.props;
-    if (typeof options.dropdownParent === 'string') {
-      options.dropdownParent = $(options.dropdownParent);
-    }
-  }
-
   componentDidUpdate(prevProps) {
     if (!shallowEqualFuzzy(prevProps.data, this.props.data)) {
       this.destroySelect2(false);
@@ -98,6 +91,13 @@ export default class Select2 extends Component {
     const elVal = this.props.multiple ? this.el.val() || [] : this.el.val();
     if (!shallowEqualFuzzy(elVal, value)) {
       this.el.val(value).trigger('change');
+    }
+  }
+
+  prepareOptions() {
+    const { options } = this.props;
+    if (typeof options.dropdownParent === 'string') {
+      options.dropdownParent = $(options.dropdownParent);
     }
   }
 
