@@ -15,14 +15,16 @@ export default class Tags extends Component {
         { text: 'documents', id: 3 },
         { text: 'discussion', id: 4 },
       ],
+      data9: ['bug', 'feature', 'documents', 'discussion'],
+      placeholder9: 'search by tags',
     };
   }
 
-  renderBasicUsage() {
+  example1() {
     const { value1 } = this.state;
     return (
       <div>
-        Basic usage<br/>
+        Update `value`<br/>
         <Select2
           multiple
           data={['bug', 'feature', 'documents', 'discussion']}
@@ -35,17 +37,17 @@ export default class Tags extends Component {
         />
         —
         <button onClick={() => this.setState({ value1: ['bug', 'discussion'] })}>
-          set 'bug' 'discussion' value
+          set `bug` `discussion` value
         </button>
       </div>
     );
   }
 
-  renderBasicUsageMutated() {
+  example2() {
     const { value2 } = this.state;
     return (
       <div>
-        Basic usage with mutated value<br/>
+        Update mutated `value`<br/>
         <Select2
           multiple
           data={['bug', 'feature', 'documents', 'discussion']}
@@ -64,13 +66,13 @@ export default class Tags extends Component {
             this.setState({ value2: items });
           }}
         >
-          set 'feature' 'documents' value
+          add `documents` value
         </button>
       </div>
     );
   }
 
-  renderDataAsObject() {
+  example3() {
     const { value3 } = this.state;
     return (
       <div>
@@ -91,13 +93,13 @@ export default class Tags extends Component {
         />
         —
         <button onClick={() => this.setState({ value3: 3 })}>
-          set 'documents' value
+          set `documents` value
         </button>
       </div>
     );
   }
 
-  renderCallbacks() {
+  example4() {
     return (
       <div>
         Callbacks<br/>
@@ -118,7 +120,7 @@ export default class Tags extends Component {
     );
   }
 
-  renderDefaultValue() {
+  example5() {
     return (
       <div>
         Default value<br/>
@@ -139,7 +141,7 @@ export default class Tags extends Component {
     );
   }
 
-  renderDefaultMultipleValue() {
+  example6() {
     return (
       <div>
         Default multiple value<br/>
@@ -160,7 +162,7 @@ export default class Tags extends Component {
     );
   }
 
-  renderDynamicUpdateData() {
+  example7() {
     const { data7 } = this.state;
     return (
       <div>
@@ -188,7 +190,7 @@ export default class Tags extends Component {
     );
   }
 
-  renderOptGroups() {
+  example8() {
     return (
       <div>
         Option Groups<br/>
@@ -213,26 +215,40 @@ export default class Tags extends Component {
     );
   }
 
+  example9() {
+    const { placeholder9, data9 } = this.state;
+    return (
+      <div>
+        Update Options<br/>
+        <Select2
+          multiple
+          data={data9}
+          options={
+            {
+              placeholder: placeholder9,
+            }
+          }
+        />
+        —
+        <button onClick={() => this.setState({ placeholder9: 'test', data9: ['feature'] })}>
+          set `placeholder` and `data`
+        </button>
+      </div>
+    );
+  }
 
   render() {
     return (
       <div>
-        {/* example 1 */}
-        {this.renderBasicUsage()}<br/>
-        {/* example 2 */}
-        {this.renderBasicUsageMutated()}<br/>
-        {/* example 3 */}
-        {this.renderDataAsObject()}<br/>
-        {/* example 4 */}
-        {this.renderCallbacks()}<br/>
-        {/* example 5 */}
-        {this.renderDefaultValue()}<br/>
-        {/* example 6 */}
-        {this.renderDefaultMultipleValue()}<br/>
-        {/* example 7 */}
-        {this.renderDynamicUpdateData()}<br/>
-        {/* example 8 */}
-        {this.renderOptGroups()}
+        {this.example1()}<br/>
+        {this.example2()}<br/>
+        {this.example3()}<br/>
+        {this.example4()}<br/>
+        {this.example5()}<br/>
+        {this.example6()}<br/>
+        {this.example7()}<br/>
+        {this.example8()}<br/>
+        {this.example9()}<br/>
       </div>
     );
   }
