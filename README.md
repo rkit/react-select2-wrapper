@@ -14,22 +14,17 @@ npm install react-select2-wrapper --save
 
 ## Development
 
-### Webpack
+### Installation
 
-- Server
-  ```
-  npm run start
-  ```
+1. Install dependencies
+   ```
+   npm install
+   ```
 
-- Watch mode
-  ```
-  npm run watch
-  ```
-
-- Build for production
-  ```
-  npm run build
-  ```
+2. Run the development server (hot reload)
+   ```
+   npm run start
+   ```
 
 ### Coding Standard
 
