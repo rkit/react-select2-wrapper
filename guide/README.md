@@ -159,7 +159,7 @@ this.refs.tags.el
 
 ## Themes
 
-Default theme in [css/select2.css](css/select2.css)
+Default theme in [css/select2.css](../css/select2.css)
 
 ```js
 import 'react-select2-wrapper/css/select2.css';

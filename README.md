@@ -16,7 +16,7 @@ npm install react-select2-wrapper --save
 
 ### Webpack
 
-- Run server
+- Server
   ```
   npm run start
   ```
