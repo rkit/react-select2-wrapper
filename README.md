@@ -21,7 +21,7 @@ npm install react-select2-wrapper --save
    npm install
    ```
 
-2. Run the development server (hot reload)
+2. Run the development server with hot reload
    ```
    npm run start
    ```
