@@ -10,7 +10,7 @@ npm install react-select2-wrapper --save
 
 ## Documentation
 
-[Guide](/guide)
+- [Guide](/guide)
 
 ## Development
 
