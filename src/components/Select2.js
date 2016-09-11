@@ -62,7 +62,7 @@ export default class Select2 extends Component {
       this.destroySelect2(false);
       this.initSelect2(false);
     } else {
-      const { options } = this.props;
+      const { options } = this.props.options;
       if (!shallowEqualFuzzy(prevProps.options, options)) {
         this.el.select2(this.prepareOptions(options));
       }
