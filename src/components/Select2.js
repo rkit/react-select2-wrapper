@@ -156,8 +156,7 @@ export default class Select2 extends Component {
   makeOption(item, k) {
     if (this.isObject(item)) {
       const { id, text, ...itemParams } = item;
-      const key = 'option-' + k + '-' + id;
-      return (<option key={key} value={id} {...itemParams}>{text}</option>);
+      return (<option key={`option-${k}-${id}`} value={id} {...itemParams}>{text}</option>);
     }
 
     return (<option key={`option-${k}`} value={item}>{item}</option>);
