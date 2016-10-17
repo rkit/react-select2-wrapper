@@ -153,13 +153,13 @@ export default class Select2 extends Component {
     return type === 'function' || (value && type === 'object') || false;
   }
 
-  makeOption(item, k) {
+  makeOption(item) {
     if (this.isObject(item)) {
       const { id, text, ...itemParams } = item;
       return (<option key={`option-${id}`} value={id} {...itemParams}>{text}</option>);
     }
 
-    return (<option key={`option-${k}`} value={item}>{item}</option>);
+    return (<option key={`option-${item}`} value={item}>{item}</option>);
   }
 
   render() {
@@ -180,11 +180,11 @@ export default class Select2 extends Component {
             const { children, text, ...itemParams } = item;
             return (
               <optgroup key={`optgroup-${k}`} label={text} {...itemParams}>
-                {children.map((child, k2) => this.makeOption(child, `${k}-${k2}`))}
+                {children.map((child) => this.makeOption(child))}
               </optgroup>
             );
           }
-          return this.makeOption(item, k);
+          return this.makeOption(item);
         })}
       </select>
     );
