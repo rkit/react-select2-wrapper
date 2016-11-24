@@ -45,46 +45,93 @@ export default class Select2 extends Component {
   constructor(props) {
     super(props);
     this.el = null;
+    this.forceUpdateValue = false;
   }
 
   componentDidMount() {
-    this.initSelect2();
+    this.initSelect2(this.props);
+    this.updateValue();
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.el) {
-      this.setValue(this.prepareValue(nextProps.value, this.props.defaultValue));
-    }
+    this.updSelect2(nextProps);
   }
 
-  componentDidUpdate(prevProps) {
-    if (!shallowEqualFuzzy(prevProps.data, this.props.data)) {
-      this.destroySelect2(false);
-      this.initSelect2(false);
-    } else {
-      const { options } = this.props;
-      if (!shallowEqualFuzzy(prevProps.options, options)) {
-        this.el.select2(this.prepareOptions(options));
-      }
-    }
-
-    const handlerChanged = e => prevProps[e[1]] !== this.props[e[1]];
-
-    if (this.props.events.some(handlerChanged)) {
-      this.detachEventHandlers();
-      this.attachEventHandlers();
-    }
+  componentDidUpdate() {
+    this.updateValue();
   }
 
   componentWillUnmount() {
     this.destroySelect2();
   }
 
-  setValue(value) {
-    const elVal = this.props.multiple ? this.el.val() || [] : this.el.val();
-    if (!shallowEqualFuzzy(elVal, value)) {
-      this.el.val(value).trigger('change');
+  initSelect2(props, updateValue = false) {
+    const { options } = props;
+
+    this.el = $(ReactDOM.findDOMNode(this));
+    // fix for updating selected value when data is changing
+    if (updateValue) {
+      this.forceUpdateValue = true;
+      this.el.off(`change.${namespace}`).val(null).trigger('change');
     }
+    this.el.select2(this.prepareOptions(options));
+    this.attachEventHandlers(props);
+  }
+
+  updSelect2(props) {
+    const prevProps = this.props;
+
+    if (!shallowEqualFuzzy(prevProps.data, props.data)) {
+      this.destroySelect2(false);
+      this.initSelect2(props, true);
+    } else {
+      const { options } = props;
+      if (!shallowEqualFuzzy(prevProps.options, options)) {
+        this.el.select2(this.prepareOptions(options));
+      }
+    }
+
+    const handlerChanged = e => prevProps[e[1]] !== props[e[1]];
+    if (props.events.some(handlerChanged)) {
+      this.detachEventHandlers(props);
+      this.attachEventHandlers(props);
+    }
+  }
+
+  updateValue() {
+    const { value, defaultValue, multiple } = this.props;
+    const newValue = this.prepareValue(value, defaultValue);
+    const currentValue = multiple ? this.el.val() || [] : this.el.val();
+
+    if (!shallowEqualFuzzy(currentValue, newValue) || this.forceUpdateValue) {
+      this.el.val(newValue).trigger('change');
+      this.forceUpdateValue = false;
+    }
+  }
+
+  destroySelect2(withCallbacks = true) {
+    if (withCallbacks) {
+      this.detachEventHandlers(this.props);
+    }
+
+    this.el.select2('destroy');
+    this.el = null;
+  }
+
+  attachEventHandlers(props) {
+    props.events.forEach(event => {
+      if (typeof props[event[1]] !== 'undefined') {
+        this.el.on(event[0], props[event[1]]);
+      }
+    });
+  }
+
+  detachEventHandlers(props) {
+    props.events.forEach(event => {
+      if (typeof props[event[1]] !== 'undefined') {
+        this.el.off(event[0]);
+      }
+    });
   }
 
   prepareValue(value, defaultValue) {
@@ -103,49 +150,6 @@ export default class Select2 extends Component {
       opt.dropdownParent = $(opt.dropdownParent);
     }
     return opt;
-  }
-
-  initSelect2(withCallbacks = true) {
-    if (this.el) { return; }
-    const { defaultValue, value, options } = this.props;
-
-    this.el = $(ReactDOM.findDOMNode(this));
-    this.el.select2(this.prepareOptions(options));
-
-    if (withCallbacks) {
-      this.attachEventHandlers();
-    }
-
-    if (typeof defaultValue === 'undefined' && typeof value !== 'undefined') {
-      this.setValue(value);
-    }
-  }
-
-  destroySelect2(withCallbacks = true) {
-    if (!this.el) { return; }
-
-    if (withCallbacks) {
-      this.detachEventHandlers();
-    }
-
-    this.el.select2('destroy');
-    this.el = null;
-  }
-
-  attachEventHandlers() {
-    this.props.events.forEach(event => {
-      if (typeof this.props[event[1]] !== 'undefined') {
-        this.el.on(event[0], this.props[event[1]]);
-      }
-    });
-  }
-
-  detachEventHandlers() {
-    this.props.events.forEach(event => {
-      if (typeof this.props[event[1]] !== 'undefined') {
-        this.el.off(event[0]);
-      }
-    });
   }
 
   isObject(value) {

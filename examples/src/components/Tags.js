@@ -9,6 +9,10 @@ export default class Tags extends Component {
       value1: ['feature'],
       value2: ['feature'],
       value3: null,
+      value10: null,
+      onChange10: () => {
+        console.log('onChange');
+      },
       data7: [
         { text: 'bug', id: 1 },
         { text: 'feature', id: 2 },
@@ -16,6 +20,12 @@ export default class Tags extends Component {
         { text: 'discussion', id: 4 },
       ],
       data9: ['bug', 'feature', 'documents', 'discussion'],
+      data10: [
+        { text: 'bug', id: 1 },
+        { text: 'feature', id: 2 },
+        { text: 'documents', id: 3 },
+        { text: 'discussion', id: 4 },
+      ],
       placeholder9: 'search by tags',
     };
   }
@@ -24,7 +34,7 @@ export default class Tags extends Component {
     const { value1 } = this.state;
     return (
       <div>
-        Update `value`<br/>
+        Set `bug` `discussion`<br/>
         <Select2
           multiple
           data={['bug', 'feature', 'documents', 'discussion']}
@@ -37,7 +47,7 @@ export default class Tags extends Component {
         />
         —
         <button onClick={() => this.setState({ value1: ['bug', 'discussion'] })}>
-          set `bug` `discussion` value
+          Update
         </button>
       </div>
     );
@@ -47,7 +57,7 @@ export default class Tags extends Component {
     const { value2 } = this.state;
     return (
       <div>
-        Update mutated `value`<br/>
+        Set mutated `documents`<br/>
         <Select2
           multiple
           data={['bug', 'feature', 'documents', 'discussion']}
@@ -66,7 +76,7 @@ export default class Tags extends Component {
             this.setState({ value2: items });
           }}
         >
-          add `documents` value
+          Update
         </button>
       </div>
     );
@@ -76,7 +86,7 @@ export default class Tags extends Component {
     const { value3 } = this.state;
     return (
       <div>
-        Data as an object<br/>
+        Set `documents`<br/>
         <Select2
           multiple={false}
           data={[
@@ -93,7 +103,7 @@ export default class Tags extends Component {
         />
         —
         <button onClick={() => this.setState({ value3: 3 })}>
-          set `documents` value
+          Update
         </button>
       </div>
     );
@@ -166,7 +176,7 @@ export default class Tags extends Component {
     const { data7 } = this.state;
     return (
       <div>
-        Dynamic update data<br/>
+        Set a new data<br/>
         <Select2
           defaultValue={1}
           data={ data7 }
@@ -184,7 +194,7 @@ export default class Tags extends Component {
           ],
         })}
         >
-          reload data value
+          Update
         </button>
       </div>
     );
@@ -219,7 +229,7 @@ export default class Tags extends Component {
     const { placeholder9, data9 } = this.state;
     return (
       <div>
-        Update Options<br/>
+        Set placeholder and a new data<br/>
         <Select2
           multiple
           data={data9}
@@ -230,8 +240,48 @@ export default class Tags extends Component {
           }
         />
         —
-        <button onClick={() => this.setState({ placeholder9: 'test', data9: ['feature'] })}>
-          set `placeholder` and `data`
+        <button onClick={() => this.setState({
+          placeholder9: 'test',
+          data9: ['feature'],
+        })}
+        >
+          Update
+        </button>
+      </div>
+    );
+  }
+
+  example10() {
+    const { value10, data10, onChange10 } = this.state;
+    return (
+      <div>
+        Add a new item and set a new `onChange` event<br/>
+        <Select2
+          multiple={false}
+          data={data10}
+          defaultValue={ 1 }
+          value={ value10 }
+          onChange={onChange10}
+          options={{
+            placeholder: 'search by tags',
+          }}
+        />
+        —
+        <button onClick={() => this.setState({
+          value10: 5,
+          data10: [
+            { text: 'bug', id: 1 },
+            { text: 'feature', id: 2 },
+            { text: 'documents', id: 3 },
+            { text: 'discussion', id: 4 },
+            { text: 'tester', id: 5 },
+          ],
+          onChange10: () => {
+            console.log('onChange!');
+          },
+        })}
+        >
+          Update
         </button>
       </div>
     );
@@ -249,6 +299,7 @@ export default class Tags extends Component {
         {this.example7()}<br/>
         {this.example8()}<br/>
         {this.example9()}<br/>
+        {this.example10()}<br/>
       </div>
     );
   }
