@@ -1,6 +1,6 @@
 {
   "name": "react-select2-wrapper",
-  "version": "1.0.3",
+  "version": "1.0.4-beta1",
   "description": "React component for Select2",
   "main": "lib/components/Select2.js",
   "files": [
