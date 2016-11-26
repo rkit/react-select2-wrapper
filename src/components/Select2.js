@@ -93,7 +93,7 @@ export default class Select2 extends Component {
 
     const handlerChanged = e => prevProps[e[1]] !== props[e[1]];
     if (props.events.some(handlerChanged)) {
-      this.detachEventHandlers(props);
+      this.detachEventHandlers();
       this.attachEventHandlers(props);
     }
   }
@@ -111,7 +111,7 @@ export default class Select2 extends Component {
 
   destroySelect2(withCallbacks = true) {
     if (withCallbacks) {
-      this.detachEventHandlers(this.props);
+      this.detachEventHandlers();
     }
 
     this.el.select2('destroy');
@@ -126,9 +126,9 @@ export default class Select2 extends Component {
     });
   }
 
-  detachEventHandlers(props) {
-    props.events.forEach(event => {
-      if (typeof props[event[1]] !== 'undefined') {
+  detachEventHandlers() {
+    this.props.events.forEach(event => {
+      if (typeof this.props[event[1]] !== 'undefined') {
         this.el.off(event[0]);
       }
     });
