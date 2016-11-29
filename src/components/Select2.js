@@ -46,6 +46,7 @@ export default class Select2 extends Component {
     super(props);
     this.el = null;
     this.forceUpdateValue = false;
+    this.initialRender = true;
   }
 
   componentDidMount() {
@@ -54,6 +55,7 @@ export default class Select2 extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.initialRender = false;
     this.updSelect2(nextProps);
   }
 
@@ -104,7 +106,17 @@ export default class Select2 extends Component {
     const currentValue = multiple ? this.el.val() || [] : this.el.val();
 
     if (!shallowEqualFuzzy(currentValue, newValue) || this.forceUpdateValue) {
+      const onChange = this.props.onChange;
+
+      if (this.initialRender && onChange) {
+        this.el.off(`change.${namespace}`);
+      }
+
       this.el.val(newValue).trigger('change');
+
+      if (this.initialRender && onChange) {
+        this.el.on(`change.${namespace}`, onChange);
+      }
       this.forceUpdateValue = false;
     }
   }
