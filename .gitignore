@@ -2,5 +2,5 @@
 Thumbs.db
 *.log
 
-/lib
-node_modules
+lib/
+node_modules/
