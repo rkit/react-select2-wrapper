@@ -295,7 +295,7 @@ export default class Tags extends Component {
   }
 
   example11() {
-    const { value11, data11, onChange11 } = this.state;
+    const { value11, data11 } = this.state;
     return (
       <div>
         Add a new item and set a new `onChange` event<br/>
@@ -304,10 +304,10 @@ export default class Tags extends Component {
           data={data11}
           defaultValue={ 1 }
           value={ value11 }
-          onChange={(e) => { this.setState({value11: e.target.value}) }}
+          onChange={(e) => { this.setState({ value11: e.target.value }); }}
           options={{
             placeholder: 'search by tags',
-            allowClear: true
+            allowClear: true,
           }}
         />
         —
