@@ -105,7 +105,7 @@ export default class Select2 extends Component {
     const newValue = this.prepareValue(value, defaultValue);
     const currentValue = multiple ? this.el.val() || [] : this.el.val();
 
-    if (!shallowEqualFuzzy(currentValue, newValue) || this.forceUpdateValue) {
+    if (!this.fuzzyValuesEqual(currentValue, newValue) || this.forceUpdateValue) {
       const onChange = this.props.onChange;
 
       if (this.initialRender && onChange) {
@@ -119,6 +119,11 @@ export default class Select2 extends Component {
       }
       this.forceUpdateValue = false;
     }
+  }
+
+  fuzzyValuesEqual(currentValue, newValue) {
+    return (currentValue === null && newValue === '') ||
+      shallowEqualFuzzy(currentValue, newValue);
   }
 
   destroySelect2(withCallbacks = true) {

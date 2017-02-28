@@ -26,6 +26,13 @@ export default class Tags extends Component {
         { text: 'documents', id: 3 },
         { text: 'discussion', id: 4 },
       ],
+      value11: 1,
+      data11: [
+        { text: 'bug', id: 1 },
+        { text: 'feature', id: 2 },
+        { text: 'documents', id: 3 },
+        { text: 'discussion', id: 4 },
+      ],
       placeholder9: 'search by tags',
     };
   }
@@ -287,6 +294,28 @@ export default class Tags extends Component {
     );
   }
 
+  example11() {
+    const { value11, data11 } = this.state;
+    return (
+      <div>
+        Add a new item and set a new `onChange` event<br/>
+        <Select2
+          multiple={false}
+          data={data11}
+          defaultValue={ 1 }
+          value={ value11 }
+          onChange={(e) => { this.setState({ value11: e.target.value }); }}
+          options={{
+            placeholder: 'search by tags',
+            allowClear: true,
+          }}
+        />
+        —
+        Click "x" to clear
+      </div>
+    );
+  }
+
   render() {
     return (
       <div>
@@ -299,7 +328,7 @@ export default class Tags extends Component {
         {this.example7()}<br/>
         {this.example8()}<br/>
         {this.example9()}<br/>
-        {this.example10()}<br/>
+        {this.example11()}<br/>
       </div>
     );
   }
