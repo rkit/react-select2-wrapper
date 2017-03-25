@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Tags from './components/Tags';
+import Example from './Example';
 
 render(
-  <Tags />,
+  <Example />,
   document.getElementById('app')
 );
