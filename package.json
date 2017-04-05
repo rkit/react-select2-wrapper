@@ -28,7 +28,7 @@
     "input"
   ],
   "dependencies": {
-    "select2": "^4.0.0",
+    "select2": "git+https://github.com/misa5555/select2.git",
     "shallow-equal-fuzzy": "^0.0.2"
   },
   "devDependencies": {
