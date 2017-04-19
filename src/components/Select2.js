@@ -67,14 +67,13 @@ export default class Select2 extends Component {
     this.destroySelect2();
   }
 
-  initSelect2(props, updateValue = false) {
+  initSelect2(props) {
     const { options } = props;
 
     this.el = $(ReactDOM.findDOMNode(this));
     // fix for updating selected value when data is changing
-    if (updateValue) {
-      this.forceUpdateValue = true;
-      this.el.off(`change.${namespace}`).val(null).trigger('change');
+    if (this.forceUpdateValue) {
+      this.updateSelect2Value(null);
     }
     this.el.select2(this.prepareOptions(options));
     this.attachEventHandlers(props);
@@ -84,13 +83,15 @@ export default class Select2 extends Component {
     const prevProps = this.props;
 
     if (!shallowEqualFuzzy(prevProps.data, props.data)) {
+      this.forceUpdateValue = true;
       this.destroySelect2(false);
-      this.initSelect2(props, true);
-    } else {
-      const { options } = props;
-      if (!shallowEqualFuzzy(prevProps.options, options)) {
-        this.el.select2(this.prepareOptions(options));
-      }
+      this.initSelect2(props);
+      return;
+    }
+
+    const { options } = props;
+    if (!shallowEqualFuzzy(prevProps.options, options)) {
+      this.el.select2(this.prepareOptions(options));
     }
 
     const handlerChanged = e => prevProps[e[1]] !== props[e[1]];
@@ -100,22 +101,24 @@ export default class Select2 extends Component {
     }
   }
 
+  updateSelect2Value(value) {
+    this.el.off(`change.${namespace}`).val(value).trigger('change');
+
+    const onChange = this.props.onChange;
+    if (onChange) {
+      this.el.on(`change.${namespace}`, onChange);
+    }
+  }
+
   updateValue() {
     const { value, defaultValue, multiple } = this.props;
     const newValue = this.prepareValue(value, defaultValue);
     const currentValue = multiple ? this.el.val() || [] : this.el.val();
 
     if (!this.fuzzyValuesEqual(currentValue, newValue) || this.forceUpdateValue) {
-      const onChange = this.props.onChange;
-
-      if (this.initialRender && onChange) {
-        this.el.off(`change.${namespace}`);
-      }
-
-      this.el.val(newValue).trigger('change');
-
-      if (this.initialRender && onChange) {
-        this.el.on(`change.${namespace}`, onChange);
+      this.updateSelect2Value(newValue);
+      if (!this.initialRender) {
+        this.el.trigger('change');
       }
       this.forceUpdateValue = false;
     }
