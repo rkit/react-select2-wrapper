@@ -11,6 +11,7 @@ config.entry.app.push(
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   historyApiFallback: true,
+  disableHostCheck: true,
   hot: true,
   stats: {
     colors: true,
