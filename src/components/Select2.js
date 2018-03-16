@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqualFuzzy from 'shallow-equal-fuzzy';
 import $ from 'jquery';
-import 'select2';
+import 'select2/dist/js/select2.full';
 
 const namespace = 'react-select2-wrapper';
 
