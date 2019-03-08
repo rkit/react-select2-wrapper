@@ -157,6 +157,17 @@ You can access to select2 as follows
 this.refs.tags.el
 ```
 
+### Full version
+
+Some options are only available with [`Select2.full.js`](https://select2.org/getting-started/builds-and-modules).
+To use that version instead:
+
+```js
+import Select2 from 'react-select2-wrapper/lib/components/Select2.full';
+````
+
+Everything else will be the same as before.
+
 ## Themes
 
 Default theme in [css/select2.css](../css/select2.css)
