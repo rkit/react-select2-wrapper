@@ -29,3 +29,8 @@ npm install react-select2-wrapper --save
 ### Coding Standard
 
 - ESLint — [.eslintrc](./.eslintrc)
+
+## Partners
+
+Are you planning to use this plugin to create a awesome dashboard?\
+Take a look at [Creative Tim](https://www.creative-tim.com/product/argon-dashboard-pro-react/?ref=react-select2-wrapper).
