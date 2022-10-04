@@ -28,8 +28,8 @@
     "input"
   ],
   "dependencies": {
-    "prop-types": "^15.6.0",
-    "select2": "^4.0.0",
+    "prop-types": "^15.6.2",
+    "select2": "^4.0.8",
     "shallow-equal-fuzzy": "^0.0.2"
   },
   "devDependencies": {
