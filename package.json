@@ -28,7 +28,7 @@
     "input"
   ],
   "dependencies": {
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.6.2",
     "select2": "^4.0.0",
     "shallow-equal-fuzzy": "^0.0.2"
   },
